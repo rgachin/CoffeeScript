@@ -23,7 +23,7 @@
     });
     return client.end;
   };
-  fetchPage("search.twitter.com", "/search.json?q=blue%20angels", function(str, content) {
+  fetchPage("search.twitter.com", "/search.json?q=coffeescript", function(str, content) {
     return console.log(content);
   });
 }).call(this);
