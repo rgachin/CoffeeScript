@@ -17,12 +17,12 @@ fetchPage = (host, port, path, callback) ->
 googleSearch = (keyword, callback) ->
 	host = "ajax.googleapis.com"
 	path = "/ajax/services/search/web?v=1.0&q=#{encodeURI(keyword)}"
-	fetchPage host, 80, path, callback
+	fetchPage host, 90, path, callback
 
 twitterSearch = (keyword, callback) ->
 	host = "search.twitter.com"
 	path = "/search.json?q=#{encodeURI(keyword)}"
-	fetchPage host, 80, path, callback
+	fetchPage host, 90, path, callback
 
 combinedSearch = (keyword, callback) ->
 	data = 
@@ -43,7 +43,7 @@ path = require "path"
 fs = require "fs"
 serveStatic = (uri, response) ->
 	fileName = path.join process.cwd(), uri
-	path.exists fileName, (exists) ->
+	fs.exists fileName, (exists) ->
 		if not exists
 			response.writeHead 404, 'Content-Type': 'text/plain'
 			response.end "404 Not Found #{uri}!\n"
@@ -75,5 +75,5 @@ server = http.createServer (request, response) ->
 		doSearch uri, response
 	else
 		serveStatic uri.pathname, response	
-server.listen 8080
-console.log "Server running at http://127.0.0.1:8080"
+server.listen 8090
+console.log "Server running at http://127.0.0.1:8090"
